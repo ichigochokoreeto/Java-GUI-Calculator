@@ -1,7 +1,6 @@
 # Java-GUI-Calculator
 A simple Java desktop calculator built with Swing as a beginner
-
-<img width="308" height="408" alt="image" src="https://github.com/user-attachments/assets/5a76fdd4-edf0-4b05-8b46-1cc8bf6fdefe" />
+<img width="298" height="394" alt="image" src="https://github.com/user-attachments/assets/c1b3a903-87b3-41fc-8036-84a1d90493e5" />
 
 
 # Features
