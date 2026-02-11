@@ -1,0 +1,88 @@
+package calculatorgui;
+
+//Libraries for GUI
+import javax.swing.*; //Swing components (buttons, text fields, frames)
+import java.awt.*; //layouts, colors, fonts
+import java.awt.event.*; //event handling (like clicking a button)
+
+public class CalculatorGUI {
+
+    public static void main(String[] args) {
+        
+        // Create a window (frame)
+        JFrame frame = new JFrame("Myra Calculator");
+        frame.setSize(300, 400); //width=300px, height=400px.
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Exit program when click X
+        frame.setLayout(new BorderLayout()); //Divide window into 5 parts
+
+        // Display field
+        JTextField display = new JTextField(); //text box at the top where numbers/results appear
+        display.setEditable(false); //user cannot type into it, we only display stuff programmatically.
+        display.setFont(new Font("Arial", Font.BOLD, 24));
+        display.setHorizontalAlignment(JTextField.RIGHT); //numbers appear right-aligned
+        frame.add(display, BorderLayout.NORTH); //puts this text box at the top of the window
+
+        // Panel for buttons
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(4, 4, 5, 5)); //4 rows x 4 columns of buttons, with 5px spacing between them
+
+        String[] buttons = {
+            "7", "8", "9", "÷",
+            "4", "5", "6", "x",
+            "1", "2", "3", "-",
+            "0", "AC", "=", "+"
+        }; //array of strings representing all the buttons we want
+
+        // Add buttons with action listeners
+        for (String text : buttons) {
+            JButton button = new JButton(text);
+            button.setFont(new Font("Arial", Font.BOLD, 20));
+
+            button.addActionListener(new ActionListener() { //tells Java what to do when this button is clicked
+                public void actionPerformed(ActionEvent e) { //this function runs every time the button is clicked
+                    String command = e.getActionCommand(); //gets the text on the button that was clicked
+
+                    if (command.charAt(0) >= '0' && command.charAt(0) <= '9') {
+                        display.setText(display.getText() + command);
+                    } else if (command.equals("AC")) {
+                        display.setText(""); //Clear the display
+                    } else if (command.equals("=")) { //Calculate
+                        try {
+                            String[] parts = display.getText().split(" "); //split the display into number1 operator number2
+                            double num1 = Double.parseDouble(parts[0]);
+                            String operator = parts[1];
+                            double num2 = Double.parseDouble(parts[2]); //convert the text numbers to actual numbers
+                            double result = 0;
+
+                            switch (operator) {
+                                case "+": result = num1 + num2; 
+                                          break;
+                                case "-": result = num1 - num2; 
+                                          break;
+                                case "x": result = num1 * num2; 
+                                          break;
+                                case "÷": if (num2 != 0) 
+                                            result = num1/num2;
+                                          else { 
+                                            display.setText("Error: Divide by 0");  
+                                            return; 
+                                          }
+                                          break;
+                            }
+                            display.setText("" + result);
+                        } catch (Exception ex) {
+                            display.setText("Error");
+                        }
+                    } else {
+                        display.setText(display.getText() + " " + command + " ");
+                    }
+                }
+            });
+
+            panel.add(button); //Add button to panel
+        }
+
+        frame.add(panel, BorderLayout.CENTER); //Add the panel of buttons to the center of the frame
+        frame.setVisible(true); //Show the window (now everything is visible)
+    }
+}
