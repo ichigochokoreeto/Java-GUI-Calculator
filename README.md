@@ -1,6 +1,9 @@
 # Java-GUI-Calculator
 A simple Java desktop calculator built with Swing as a beginner
 
+<img width="308" height="408" alt="image" src="https://github.com/user-attachments/assets/5a76fdd4-edf0-4b05-8b46-1cc8bf6fdefe" />
+
+
 # Features
 1. Addition (+)
 2. Subtraction (-)
@@ -15,5 +18,4 @@ A simple Java desktop calculator built with Swing as a beginner
 3. Copy and paste the code
 4. Compile and run the code
 
-<img width="308" height="408" alt="image" src="https://github.com/user-attachments/assets/d728cc55-e772-4139-ac38-000fd86731ca" />
 
